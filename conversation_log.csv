@@ -1,0 +1,44 @@
+actor,message,tool_call,timestampuser,¿Qué productos tenemos?,,2026-08-20T00:16:44+00:00
+agent,{},list_inventory,2026-08-20T00:16:45+00:00
+tool,"[{""id"": 1, ""name"": ""Leche de avena"", ""quantity"": 18.0, ""unit"": ""unidades""}, {""id"": 2, ""name"": ""Café arábica"", ""quantity"": 40.0, ""unit"": ""bolsas""}, {""id"": 3, ""name"": ""Vasos térmicos"", ""quantity"": 7.0, ""unit"": ""paquetes""}, {""id"": 4, ""name"": ""Flips"", ""quantity"": 50.0, ""unit"": ""paquetes""}]",list_inventory,2026-08-20T00:16:45+00:00
+agent,"Tenemos los siguientes productos en inventario:
+
+| ID | Nombre           | Cantidad | Unidad |
+|----|------------------|----------|--------|
+| 1  | Leche de avena   | 18.0     | unidades |
+| 2  | Café arábica     | 40.0     | bolsas |
+| 3  | Vasos térmicos   | 7.0      | paquetes |
+| 4  | Flips            | 50.0     | paquetes |",,2026-08-20T00:16:46+00:00
+user,Vendimos 12 bolsas de café arábica,,2026-08-20T00:17:07+00:00
+agent,"{""delta"": -12, ""product_id"": 2}",update_stock,2026-08-20T00:17:07+00:00
+tool,"{""id"": 2, ""name"": ""Café arábica"", ""quantity"": 28.0, ""unit"": ""bolsas""}",update_stock,2026-08-20T00:17:07+00:00
+agent,"Se han actualizado las existencias:
+
+- **Café arábica**: ahora quedan **28 bolsas** en stock.",,2026-08-20T00:17:08+00:00
+user,Acaban de llegar 30 unidades de leche de avena,,2026-08-20T00:17:47+00:00
+agent,"{""delta"": 30, ""product_id"": 1}",update_stock,2026-08-20T00:17:47+00:00
+tool,"{""id"": 1, ""name"": ""Leche de avena"", ""quantity"": 48.0, ""unit"": ""unidades""}",update_stock,2026-08-20T00:17:47+00:00
+agent,"Actualizamos el stock:
+
+- **Leche de avena**: ahora hay **48 unidades** disponibles.",,2026-08-20T00:17:48+00:00
+user,¿Qué productos están por agotarse?,,2026-08-20T00:18:19+00:00
+agent,{},get_low_stock_alerts,2026-08-20T00:18:19+00:00
+tool,"[{""id"": 3, ""name"": ""Vasos térmicos"", ""quantity"": 7.0, ""unit"": ""paquetes""}]",get_low_stock_alerts,2026-08-20T00:18:19+00:00
+agent,"Los productos que están por agotarse (menos de 10 unidades) son:
+
+- **Vasos térmicos** – 7 paquetes disponibles.",,2026-08-20T00:18:19+00:00
+user,"Agregá jarabe de caramelo, tenemos 15 botellas",,2026-08-20T00:18:38+00:00
+agent,"{""name"": ""jarabe de caramelo"", ""quantity"": 15, ""unit"": ""botellas""}",create_product,2026-08-20T00:18:38+00:00
+tool,"{""id"": 5, ""name"": ""jarabe de caramelo"", ""quantity"": 15.0, ""unit"": ""botellas""}",create_product,2026-08-20T00:18:38+00:00
+agent,"Se ha añadido el nuevo producto:
+
+- **Jarabe de caramelo** – 15 botellas disponibles.",,2026-08-20T00:18:39+00:00
+user,¿Cuánto café arábica tenemos?,,2026-08-20T00:19:16+00:00
+user,¿Cuánto café arábica tenemos?,,2026-08-20T00:20:19+00:00
+agent,{},list_inventory,2026-08-20T00:20:20+00:00
+tool,"[{""id"": 1, ""name"": ""Leche de avena"", ""quantity"": 48.0, ""unit"": ""unidades""}, {""id"": 2, ""name"": ""Café arábica"", ""quantity"": 28.0, ""unit"": ""bolsas""}, {""id"": 3, ""name"": ""Vasos térmicos"", ""quantity"": 7.0, ""unit"": ""paquetes""}, {""id"": 4, ""name"": ""Flips"", ""quantity"": 50.0, ""unit"": ""paquetes""}, {""id"": 5, ""name"": ""jarabe de caramelo"", ""quantity"": 15.0, ""unit"": ""botellas""}]",list_inventory,2026-08-20T00:20:20+00:00
+agent,Tenemos **28 bolsas** de café arábica en inventario.,,2026-08-20T00:20:21+00:00
+user,Restale otras 3 bolsas,,2026-08-20T00:20:31+00:00
+agent,"{""delta"": -3, ""product_id"": 2}",update_stock,2026-08-20T00:20:31+00:00
+tool,"{""id"": 2, ""name"": ""Café arábica"", ""quantity"": 25.0, ""unit"": ""bolsas""}",update_stock,2026-08-20T00:20:31+00:00
+agent,Se han restado 3 bolsas. El nuevo saldo del café arábica es **25 bolsas**.,,2026-08-20T00:20:31+00:00
